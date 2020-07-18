@@ -9,15 +9,16 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import ItemSerializer, RatingSerializer
+from rest_framework import generics
 
 
-class ItemViewSet(viewsets.ModelViewSet):
+class ItemViewSet(generics.ListAPIView):
     queryset = Item.objects.filter(item__rating__gte = 4 )
     serializer_class = ItemSerializer
     permission_classes = (AllowAny,)
     
 
-class RatingViewSet(viewsets.ModelViewSet):
+class RatingViewSet(generics.ListAPIView):
     queryset = Rating.objects.filter()
     serializer_class = RatingSerializer
     permission_classes = (AllowAny,)

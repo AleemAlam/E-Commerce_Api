@@ -1,11 +1,8 @@
-from django.urls import path, include
-from rest_framework import routers
-from .views import ItemViewSet, RatingViewSet
+from django.urls import path
+from . import views
 
-router = routers.DefaultRouter()
-router.register('item', ItemViewSet)
-router.register('ratings', RatingViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('items/', views.ItemViewSet.as_view(), name='items'),
+    path('ratings/', views.RatingViewSet.as_view(), name='ratings'),
 ]
